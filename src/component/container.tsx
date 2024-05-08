@@ -1,67 +1,77 @@
-import React from 'react';
-import Box from './box';
-import { useState } from 'react';
+import React, { useState } from "react";
+import Box from "./box";
 
-const Component: React.FC = () => {
-    const [state, setState] = useState(Array(9).fill(null))
-    const [currentPlayer, setCurrentPlayer] = useState("")
+const Board = () => {
+  const [state, setState] = useState(Array(9).fill(null));
+  const [isXTurn, setIsXTurn] = useState(true);
 
-    const checkWinner = (state : any[]) => {
-        const win = [
-            [0,1,2],
-            [3,4,5],
-            [6,7,8],
-            [0,3,6],
-            [1,4,7],
-            [2,5,8],
-            [0,4,8],
-            [2,4,6]
-        ];
-        for(let i = 0 ; i < win.length ; i++) {
-            const [ a , b,c] = win[i];
-            if(state[a] !== null && state[a] === state[b] && state[a] === state[c]) return true;
-        }
-        return false;
+  const checkWinner = () => {
+    const winnerLogic = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+
+    for (let logic of winnerLogic) {
+      const [a, b, c] = logic;
+      if (state[a] !== null && state[a] === state[b] && state[a] === state[c]) {
+        return state[a];
+      }
     }
 
-    const clickPlayer = (index: number) => {
-        const stateCopy = Array.from(state);
+    return false;
+  };
 
-        if(stateCopy[index] !== null) return ;
-        stateCopy[index] = currentPlayer;
+  const isWinner = checkWinner();
 
-        // Set Someone Wins
-        const win = checkWinner(stateCopy);
-        if(win) {
-            alert(`${currentPlayer} is Win!`)
-        }
-
-        setCurrentPlayer(currentPlayer === 'X' ? "O" : "X")
-        setState(stateCopy)
+  const handleClick = (index:number) => {
+    if (state[index] !== null) {
+      return;
     }
+    const copyState = [...state];
+    copyState[index] = isXTurn ? "X" : "O";
+    setState(copyState);
+    setIsXTurn(!isXTurn);
+  };
 
-    return (
-        <div>
-            <h1>Enjoy Your ~ Tic Tao Toe Game!</h1>
-            <div className="board-container">
-                <div className="row">
-                    <Box onClick={() => clickPlayer(0)} value={state[0]} />
-                    <Box onClick={() => clickPlayer(1)} value={state[1]} />
-                    <Box onClick={() => clickPlayer(2)} value={state[2]} />
-                </div>
-                <div className="row">
-                    <Box onClick={() => clickPlayer(3)} value={state[3]} />
-                    <Box onClick={() => clickPlayer(4)} value={state[4]} />
-                    <Box onClick={() => clickPlayer(5)} value={state[5]} />
-                </div>
-                <div className="row">
-                    <Box onClick={() => clickPlayer(6)} value={state[6]} />
-                    <Box onClick={() => clickPlayer(7)} value={state[7]} />
-                    <Box onClick={() => clickPlayer(8)} value={state[8]} />
-                </div>
-            </div>
-        </div>
-    );
+  const handleReset = () => {
+    setState(Array(9).fill(null));
+  };
+
+  return (
+    <div className="board-container">
+      {isWinner ? (
+        <>
+          {isWinner} won the game{" "}
+          <button onClick={handleReset}>Play Again</button>
+        </>
+      ) : (
+        <>
+          <h4>Player {isXTurn ? "X" : "O"} please move</h4>
+          <div className="row">
+            <Box onClick={() => handleClick(0)} value={state[0]} />
+            <Box onClick={() => handleClick(1)} value={state[1]} />
+            <Box onClick={() => handleClick(2)} value={state[2]} />
+          </div>
+          <div className="row">
+            <Box onClick={() => handleClick(3)} value={state[3]} />
+            <Box onClick={() => handleClick(4)} value={state[4]} />
+            <Box onClick={() => handleClick(5)} value={state[5]} />
+          </div>
+          <div className="row">
+            <Box onClick={() => handleClick(6)} value={state[6]} />
+            <Box onClick={() => handleClick(7)} value={state[7]} />
+            <Box onClick={() => handleClick(8)} value={state[8]} />
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
-export default Component;
+export default Board;
