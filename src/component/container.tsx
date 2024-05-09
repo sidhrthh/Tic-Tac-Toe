@@ -45,7 +45,7 @@ const Board = () => {
 
   return (
     <div>
-      <h1 className="main-heading">Enjoy the tic toa toe game!</h1>
+      <h1 className="main-heading">Enjoy the tic tac toe game!</h1>
       <div className="board-container">
         {isWinner ? (
           <div className="win-section">
