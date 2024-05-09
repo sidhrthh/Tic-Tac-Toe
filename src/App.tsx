@@ -1,10 +1,13 @@
-
+import Container from "./component/container"
 import './App.css';
-import Container from './component/container';
+
 
 function App() {
   return (
+    <div className="main-container">
     <Container />
+    </div>
+  
   );
 }
 

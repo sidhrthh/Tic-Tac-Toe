@@ -10,7 +10,9 @@ const Box : React.FC<BoxProps> = (props) => {
         <div
         onClick={props.onClick}
         style={{
-            border: "1px solid",
+            border: "1px solid grey",
+            borderRadius:"5px",
+            margin:"4px",
             height: "100px",
             width: "100%",
             display: "flex",

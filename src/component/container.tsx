@@ -29,7 +29,7 @@ const Board = () => {
 
   const isWinner = checkWinner();
 
-  const handleClick = (index:number) => {
+  const handleClick = (index: number) => {
     if (state[index] !== null) {
       return;
     }
@@ -44,32 +44,35 @@ const Board = () => {
   };
 
   return (
-    <div className="board-container">
-      {isWinner ? (
-        <>
-          {isWinner} won the game{" "}
-          <button onClick={handleReset}>Play Again</button>
-        </>
-      ) : (
-        <>
-          <h4>Player {isXTurn ? "X" : "O"} please move</h4>
-          <div className="row">
-            <Box onClick={() => handleClick(0)} value={state[0]} />
-            <Box onClick={() => handleClick(1)} value={state[1]} />
-            <Box onClick={() => handleClick(2)} value={state[2]} />
+    <div>
+      <h1 className="main-heading">Enjoy the tic toa toe game!</h1>
+      <div className="board-container">
+        {isWinner ? (
+          <div className="win-section">
+            <p className="winner">{isWinner} won the game{" "}</p>
+            <button className="resetBtn" onClick={handleReset}>Play Again</button>
           </div>
-          <div className="row">
-            <Box onClick={() => handleClick(3)} value={state[3]} />
-            <Box onClick={() => handleClick(4)} value={state[4]} />
-            <Box onClick={() => handleClick(5)} value={state[5]} />
-          </div>
-          <div className="row">
-            <Box onClick={() => handleClick(6)} value={state[6]} />
-            <Box onClick={() => handleClick(7)} value={state[7]} />
-            <Box onClick={() => handleClick(8)} value={state[8]} />
-          </div>
-        </>
-      )}
+        ) : (
+          <>
+            <p className="sub-heading">Player {isXTurn ? "X" : "O"} please move</p>
+            <div className="row">
+              <Box onClick={() => handleClick(0)} value={state[0]} />
+              <Box onClick={() => handleClick(1)} value={state[1]} />
+              <Box onClick={() => handleClick(2)} value={state[2]} />
+            </div>
+            <div className="row">
+              <Box onClick={() => handleClick(3)} value={state[3]} />
+              <Box onClick={() => handleClick(4)} value={state[4]} />
+              <Box onClick={() => handleClick(5)} value={state[5]} />
+            </div>
+            <div className="row">
+              <Box onClick={() => handleClick(6)} value={state[6]} />
+              <Box onClick={() => handleClick(7)} value={state[7]} />
+              <Box onClick={() => handleClick(8)} value={state[8]} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

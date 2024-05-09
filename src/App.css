@@ -1,4 +1,62 @@
+/* Import Montserrat Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+.main-container{
+  height: 100vh;
+  background-color: #3A7BD5; /* Fallback color */
+  /* Gradient background */
+  background-image: linear-gradient(to bottom, #00D2FF, #3A7BD5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.main-heading{
+  color: #FFFFFF;
+  margin-bottom:20px;
+
+}
+.sub-heading{
+  text-align: center;
+  font: 20px;
+  margin-bottom: 20px;
+
+}
+.board-container{
+  background: #FFFFFF;
+  padding: 15px;
+  border-radius: 15px;
+}
+.box{
+  border: 2px solid red;
+
+}
 .row{
   display: flex;
   cursor: pointer;
+}
+.win-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.winner{
+  text-align: center;
+  font-size: 25px;
+}
+.resetBtn{
+  background-color: #3A7BD5; /* Fallback color */
+  /* Gradient background */
+  background-image: linear-gradient(to bottom, #00D2FF, #3A7BD5);
+  border: none;
+  padding: 9px;
+  border-radius: 3px;
+  margin-top: 15px;
+
 }
